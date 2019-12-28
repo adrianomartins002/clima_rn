@@ -7,14 +7,30 @@
  */
 
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StatusBar} from 'react-native';
 
-const App: () => React$Node = () => {
-  return (
-    <View>
-      <Text>Iniciando!</Text>
-    </View>
-  );
-};
+import {Temperatura, Endereco} from './shared/molecules';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      //centralizar componentes para melhor visualização
+      <View style={{flex: 1}}>
+        <StatusBar backgroundColor="white" />
+        <View style={{flex: 0.5}}>
+          <Endereco cidade="São Luís" estado="Maranhão" />
+        </View>
+        <View style={{flex: 0.75}}>
+          <Temperatura temperatura="41" />
+        </View>
+        <View style={{flex: 2}} />
+      </View>
+    );
+  }
+}
 
 export default App;
