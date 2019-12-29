@@ -7,7 +7,9 @@
  */
 
 import React from 'react';
-import {View, StatusBar} from 'react-native';
+import {View, StatusBar, PermissionsAndroid} from 'react-native';
+
+import Geolocation from '@react-native-community/geolocation';
 
 import {Temperatura, Endereco, LoadingComponent} from '../../shared/molecules';
 import {Button} from '../../shared/atoms';
@@ -30,20 +32,41 @@ export class Inicio extends React.Component {
   }
 
   carregarDados = async () => {
-    this.setState({carregando: true});
-    const latitude = -2.538474;
-    const longitude = -44.281276;
-    const dadosClima = await ClimaService.recuperarClimaPelaLocalizacao(
-      latitude,
-      longitude,
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+      {
+        title: 'Permissão de localização',
+        message:
+          'Para conseguir o clima da sua região ' +
+          'é necessário a permissão de localização',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
     );
-    if (dadosClima) {
-      this.setState({
-        endereco: dadosClima.name,
-        clima: dadosClima.weather[0].description,
-        temperatura: dadosClima.main.temp,
-        carregando: false,
+    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+      Geolocation.getCurrentPosition(info => {
+        let latitude = 0;
+        let longitude = 0;
+        latitude = info.coords.latitude;
+        longitude = info.coords.longitude;
+        this.setState({carregando: true});
+
+        ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
+          result => {
+            if (result) {
+              this.setState({
+                endereco: result.name,
+                clima: result.weather[0].description,
+                temperatura: result.main.temp,
+                carregando: false,
+              });
+            }
+          },
+        );
       });
+    } else {
+      console.log('Camera permission denied');
     }
   };
 
