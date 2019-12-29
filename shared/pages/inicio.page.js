@@ -9,6 +9,7 @@
 import React from 'react';
 import {View, StatusBar, PermissionsAndroid, StyleSheet} from 'react-native';
 
+import NetInfo from '@react-native-community/netinfo';
 import Geolocation from '@react-native-community/geolocation';
 
 import {Informacoes} from '../organisms';
@@ -17,6 +18,7 @@ import {
   Endereco,
   LoadingComponent,
   SemPermissao,
+  NetworkInfo,
 } from '../../shared/molecules';
 import {Button} from '../../shared/atoms';
 import {ClimaService} from '../../shared/common/services/clima.service';
@@ -35,6 +37,7 @@ export class Inicio extends React.Component {
     color: null,
     icone: null,
     semPermissaoLocalizacao: false,
+    redeConectada: true,
   };
 
   constructor(props) {
@@ -42,6 +45,9 @@ export class Inicio extends React.Component {
   }
 
   componentDidMount() {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      this.setState({redeConectada: state.isConnected});
+    });
     this.carregarDados();
   }
 
@@ -59,38 +65,40 @@ export class Inicio extends React.Component {
       },
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      Geolocation.getCurrentPosition(info => {
-        let latitude = -2.509612;
-        let longitude = -44.303996;
-        // latitude = info.coords.latitude;
-        // longitude = info.coords.longitude;
-        this.setState({carregando: true});
+      if (this.state.redeConectada) {
+        Geolocation.getCurrentPosition(info => {
+          let latitude = -2.509612;
+          let longitude = -44.303996;
+          // latitude = info.coords.latitude;
+          // longitude = info.coords.longitude;
+          this.setState({carregando: true});
 
-        ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
-          result => {
-            if (result) {
-              this.setState({
-                endereco: result.name,
-                clima: result.weather[0].description,
-                temperatura: parseInt(result.main.temp),
-                carregando: false,
-                sensacao: result.main.feels_like,
-                vento: result.wind.speed,
-                nuvens: result.clouds.all,
-                pressao: result.main.pressure,
-                pais: result.sys.country,
-                color: ClimaService.tratarTemaPorCodigo(
-                  result.weather[0].icon,
-                )[0].cor,
-                // color: ClimaService.tratarTemaPorCodigo('02d')[0].cor,
-                icone: ClimaService.tratarTemaPorCodigo(
-                  result.weather[0].icon,
-                )[0].icone,
-              });
-            }
-          },
-        );
-      });
+          ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
+            result => {
+              if (result) {
+                this.setState({
+                  endereco: result.name,
+                  clima: result.weather[0].description,
+                  temperatura: parseInt(result.main.temp),
+                  carregando: false,
+                  sensacao: result.main.feels_like,
+                  vento: result.wind.speed,
+                  nuvens: result.clouds.all,
+                  pressao: result.main.pressure,
+                  pais: result.sys.country,
+                  color: ClimaService.tratarTemaPorCodigo(
+                    result.weather[0].icon,
+                  )[0].cor,
+                  // color: ClimaService.tratarTemaPorCodigo('02d')[0].cor,
+                  icone: ClimaService.tratarTemaPorCodigo(
+                    result.weather[0].icon,
+                  )[0].icone,
+                });
+              }
+            },
+          );
+        });
+      }
     } else {
       this.setState({semPermissaoLocalizacao: true});
     }
@@ -128,6 +136,7 @@ export class Inicio extends React.Component {
             backgroundColor={this.state.color}
             barStyle="light-content"
           />
+          <NetworkInfo />
           {/* endereco */}
           <View style={styles.containerEndereco}>
             <Endereco

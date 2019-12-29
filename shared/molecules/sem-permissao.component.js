@@ -36,6 +36,7 @@ const stylesBotao = StyleSheet.create({
     height: 50,
     alignSelf: 'center',
     backgroundColor: '#BB8700',
+    marginTop: 15,
     borderRadius: 25,
   },
   touchable: {
@@ -56,7 +57,7 @@ const stylesBotao = StyleSheet.create({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0.75,
     justifyContent: 'center',
     alignItems: 'center',
   },
