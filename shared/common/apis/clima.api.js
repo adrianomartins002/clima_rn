@@ -10,6 +10,7 @@ export function recuperarClima(latitude, longitude) {
       lon: longitude,
       appid: appid_clima,
       units: 'metric',
+      lang: 'pt',
     },
   };
 }
