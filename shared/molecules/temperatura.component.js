@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Sun from '../common/assets/illustrations/sunny.svg';
+import Moon from '../common/assets/illustrations/moon.svg';
 
 export const Temperatura = props => {
   return (
     <View style={styles.container}>
       <View style={styles.containerTemp}>
         <Text style={styles.textTemperatura}>{props.temperatura}º</Text>
-        <Sun width={120} height={80} />
+        <Moon width={120} height={80} />
       </View>
       <Text style={styles.textClima}>Parcialmente nublado</Text>
     </View>
