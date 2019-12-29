@@ -4,10 +4,9 @@ import Refresh from '../common/assets/illustrations/refresh-arrow.svg';
 
 export const Button = props => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {backgroundColor: props.backgroundColor}]}>
       <TouchableOpacity onPress={props.onPress} style={styles.touchable}>
-        <Text style={styles.text}>Atualizar</Text>
-        <Refresh width={18} height={18} fill="#FFF" />
+        <Refresh width={30} height={30} fill="#FFF" />
       </TouchableOpacity>
     </View>
   );
@@ -15,13 +14,9 @@ export const Button = props => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '95%',
+    // width: '95%',
     height: 50,
-    borderRadius: 25,
     alignSelf: 'center',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: '#FFF',
     backgroundColor: '#BB8700',
   },
   touchable: {

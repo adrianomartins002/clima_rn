@@ -2,12 +2,18 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 export const Endereco = props => {
+  let localizacao = props.localizacao;
+
+  //validacao utilizada para não haver quebra do layout por conta do tamanho
+  if (props.localizacao.lenght > 13) {
+    localizacao = localizacao.slice(0, 13) + '...';
+  }
   return (
     <View style={styles.container}>
       {/* cidade */}
-      <Text style={styles.textCidade}>{props.cidade}</Text>
+      <Text style={styles.textLocalizacao}>{localizacao}</Text>
       {/* estado */}
-      <Text style={styles.textEstado}>{props.estado}</Text>
+      <Text style={styles.textPais}>{props.estado}</Text>
     </View>
   );
 };
@@ -18,6 +24,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textCidade: {fontSize: 30, fontWeight: 'bold', color: '#FFF'},
-  textEstado: {fontSize: 22, color: '#FFF'},
+  textLocalizacao: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#FFF',
+    overflow: 'visible',
+  },
+  textPais: {fontSize: 22, color: '#FFF'},
 });

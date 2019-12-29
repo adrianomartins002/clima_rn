@@ -1,21 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {Info} from '../atoms';
 import Thermometer from '../common/assets/illustrations/thermometer.svg';
 import Pressure from '../common/assets/illustrations/pressure.svg';
 import Cloud from '../common/assets/illustrations/cloud-min.svg';
 import Wind from '../common/assets/illustrations/wind.svg';
-
-const Info = ({item}) => {
-  return (
-    <View style={styles.containerInfo}>
-      <View style={{flex: 0.95}}>
-        <Text style={{flex: 0.75, opacity: 1}}>{item.titulo}</Text>
-        <Text style={{opacity: 1}}> {item.descricao}</Text>
-      </View>
-      <View style={{marginTop: 8}}>{item.icone()}</View>
-    </View>
-  );
-};
 
 export const Informacoes = props => {
   const dados = montarDados(props);
@@ -25,7 +14,7 @@ export const Informacoes = props => {
       <FlatList
         renderItem={item => Info(item)}
         data={dados}
-        style={{width: '100%'}}
+        style={styles.flatList}
         keyExtractor={item => item.titulo}
       />
     </View>
@@ -35,24 +24,24 @@ export const Informacoes = props => {
 function montarDados({dados}) {
   return [
     {
-      titulo: 'Sencação',
-      descricao: dados.sensacao,
-      icone: () => <Thermometer width={25} height={25} fill="#000" />,
+      titulo: 'Sensação',
+      descricao: dados.sensacao + 'º',
+      icone: () => <Thermometer width={25} height={25} fill="#FFF" />,
     },
     {
       titulo: 'Vento',
       descricao: dados.vento,
-      icone: () => <Wind width={25} height={25} fill="#000" />,
+      icone: () => <Wind width={25} height={25} fill="#FFF" />,
     },
     {
       titulo: 'Nuvens',
       descricao: dados.nuvens,
-      icone: () => <Cloud width={25} height={25} fill="#000" />,
+      icone: () => <Cloud width={25} height={25} fill="#FFF" />,
     },
     {
       titulo: 'Pressão atmosférica',
-      descricao: dados.pressao,
-      icone: () => <Pressure width={25} height={25} fill="#000" />,
+      descricao: dados.pressao + ' mb',
+      icone: () => <Pressure width={25} height={25} fill="#FFF" />,
     },
   ];
 }
@@ -65,28 +54,21 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     marginHorizontal: 10,
     borderRadius: 10,
-    backgroundColor: '#FFF',
-    opacity: 0.5,
+    backgroundColor: 'rgba(255, 255, 255, .3)',
     paddingHorizontal: 14,
   },
   textDetalhes: {
     fontSize: 18,
     marginTop: 8,
     borderBottomWidth: 1,
+    color: '#ECEBEB',
     borderBottomColor: '#FFF',
     fontWeight: 'bold',
     width: '100%',
   },
-  containerInfo: {
-    marginTop: 2,
-    height: 50,
-    width: '100%',
-    borderBottomWidth: 1,
-    borderBottomColor: '#FFF',
-    flexDirection: 'row',
-  },
   text: {
-    fontSize: 100,
+    color: '#FFF',
     fontWeight: '800',
   },
+  flatList: {width: '100%'},
 });
