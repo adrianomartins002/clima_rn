@@ -11,6 +11,7 @@ import {View, StatusBar, PermissionsAndroid} from 'react-native';
 
 import Geolocation from '@react-native-community/geolocation';
 
+import {Informacoes} from '../organisms';
 import {Temperatura, Endereco, LoadingComponent} from '../../shared/molecules';
 import {Button} from '../../shared/atoms';
 import {ClimaService} from '../../shared/common/services/clima.service';
@@ -60,6 +61,11 @@ export class Inicio extends React.Component {
                 clima: result.weather[0].description,
                 temperatura: result.main.temp,
                 carregando: false,
+                sensacao: result.main.feels_like,
+                vento: result.wind.speed,
+                nuvens: result.clouds.all,
+                pressao: result.main.pressure,
+                pais: result.sys.country,
               });
             }
           },
@@ -74,15 +80,15 @@ export class Inicio extends React.Component {
     if (!this.state.carregando) {
       return (
         //centralizar componentes para melhor visualização
-        <View style={{flex: 1, backgroundColor: '#FEFEFE'}}>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
+        <View style={{flex: 1, backgroundColor: '#BB8700'}}>
+          <StatusBar backgroundColor="#BB8700" barStyle="dark-content" />
 
           {/* endereco */}
           <View style={{flex: 0.5}}>
-            <Endereco cidade={this.state.endereco} estado="Maranhão" />
+            <Endereco cidade={this.state.endereco} estado={this.state.pais} />
           </View>
           {/* temperatura */}
-          <View style={{flex: 0.75}}>
+          <View style={{flex: 1}}>
             <Temperatura
               temperatura={parseInt(this.state.temperatura)}
               clima={this.state.clima}
@@ -90,13 +96,18 @@ export class Inicio extends React.Component {
           </View>
 
           {/* informacoes */}
-          <View style={{flex: 2}}>
-            <View
-              style={{
-                flex: 1,
-              }}>
-              {/* <Informacoes /> */}
-            </View>
+          <View style={{flex: 1.5}}>
+            <Informacoes
+              dados={{
+                sensacao: this.state.sensacao,
+                vento: this.state.vento,
+                nuvens: this.state.nuvens,
+                pressao: this.state.pressao,
+              }}
+            />
+          </View>
+          <View
+            style={{flex: 0.5, alignItems: 'center', justifyContent: 'center'}}>
             <Button onPress={this.carregarDados} />
           </View>
         </View>

@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  textCidade: {fontSize: 30, fontWeight: 'bold'},
-  textEstado: {fontSize: 22},
+  textCidade: {fontSize: 30, fontWeight: 'bold', color: '#FFF'},
+  textEstado: {fontSize: 22, color: '#FFF'},
 });

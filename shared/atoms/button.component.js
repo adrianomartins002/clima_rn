@@ -15,14 +15,14 @@ export const Button = props => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 150,
+    width: '95%',
     height: 50,
     borderRadius: 25,
     alignSelf: 'center',
-    marginBottom: 40,
     borderWidth: 1,
     borderStyle: 'solid',
-    backgroundColor: '#000',
+    borderColor: '#FFF',
+    backgroundColor: '#BB8700',
   },
   touchable: {
     flex: 1,
