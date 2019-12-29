@@ -26,22 +26,22 @@ function montarDados({dados}) {
     {
       titulo: 'Sensação',
       descricao: dados.sensacao + 'º',
-      icone: () => <Thermometer width={25} height={25} fill="#FFF" />,
+      icone: () => <Thermometer width={25} height={25} fill={'#FFF'} />,
     },
     {
       titulo: 'Vento',
       descricao: dados.vento,
-      icone: () => <Wind width={25} height={25} fill="#FFF" />,
+      icone: () => <Wind width={25} height={25} fill={'#FFF'} />,
     },
     {
       titulo: 'Nuvens',
       descricao: dados.nuvens,
-      icone: () => <Cloud width={25} height={25} fill="#FFF" />,
+      icone: () => <Cloud width={25} height={25} fill={'#FFF'} />,
     },
     {
       titulo: 'Pressão atmosférica',
       descricao: dados.pressao + ' mb',
-      icone: () => <Pressure width={25} height={25} fill="#FFF" />,
+      icone: () => <Pressure width={25} height={25} fill={'#FFF'} />,
     },
   ];
 }

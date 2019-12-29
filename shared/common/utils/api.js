@@ -27,7 +27,6 @@ async function rotear({metodo, url, headers, data, ...otherParams}) {
       },
       headers,
     });
-    console.warn('instancia:', instancia);
     return instancia;
   } else {
     const instancia = await axiosInstance(url, {
@@ -37,7 +36,6 @@ async function rotear({metodo, url, headers, data, ...otherParams}) {
       },
       headers,
     });
-    console.log('instancia:', instancia.request);
     return instancia;
   }
 }

@@ -1,24 +1,48 @@
 # clima_rn
+Projeto para criação de aplicativo para verificar o clima da região pelo gps
+
+[Tela1](https://imgur.com/NoRZk3K)
+
+# Iniciando
+Essas instruções fornecerão uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste. Consulte implantação para obter notas sobre como implantar o projeto em um sistema ativo.
+
+## Pré-requisitos:
+Para execução e desenvolvimento do projeto é necessário, ou que tenha instalado:
+- nodejs
+- react-native
+- yarn ou npm
+- Android SDK
+
+
+## Desenvolvido com
+ - JavaScript
+ - [React-Native](https://facebook.github.io/react-native/)
+ - [react-native-svg](https://github.com/react-native-community/react-native-svg)
+ - [react-native-svg-transformer](https://github.com/kristerkari/react-native-svg-transformer)
+ - [react-native-geolocation](https://github.com/react-native-community/react-native-geolocation)
+ - [react-native-netinfo](https://github.com/react-native-community/react-native-netinfo)
 
 ### Atomic design
- - Design atomico para aplicacoes react
+ - Para design e organização do projeto utilizei parte dos conceitos do Design atomico para aplicacoes react
+ 
 
-### Libs
-    react-native svg
-    react-native-svg-transformer
-    react-native-geolocation
+## Executando os testes
+<!-- - Para execução dos testes unitários basta utilizar o comando ```  ``` na pasta raiz do projeto. -->
 
-### imagens
-    flaticon - free
+## Execução pro projeto
+ - Para executar o aplicativo pela avd do android sdk basta baixar os pacotes do package.json utilizando o comando ``` yarn ou npm install ``` e logo após o download terminar, utilizar o comando ``` react-native run-android ```.
 
-### ajustes
-    para manter a rotação da tela fixa
-    android:screenOrientation="portrait"
+## Autores
+- Adriano Martins de Oliveira Sousa.
 
-### autores:
-    icones:
-    cold: <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-    sun: <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-    cloud: <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
-    moon: <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+## Imagens e SVG (Autores)
+    Algumas das imagens e svg's grátis que utilizei vieram do site [Flaticon](https://www.flaticon.com/)
+- Autores :
+
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    
+    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
     
