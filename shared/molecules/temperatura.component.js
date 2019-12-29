@@ -1,15 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Moon from '../common/assets/illustrations/moon.svg';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import Sun from '../common/assets/illustrations/sunny.svg';
 
 export const Temperatura = props => {
   return (
     <View style={styles.container}>
       <View style={styles.containerTemp}>
         <Text style={styles.textTemperatura}>{props.temperatura}º</Text>
-        <Moon width={120} height={80} />
+        <Sun width={120} height={80} />
+        {/* <Image
+          source={{uri: 'http://openweathermap.org/img/wn/01d.png'}}
+          style={{width: 120, height: 80}}
+        /> */}
       </View>
-      <Text style={styles.textClima}>Parcialmente nublado</Text>
+      <Text style={styles.textClima}>{props.clima}</Text>
     </View>
   );
 };

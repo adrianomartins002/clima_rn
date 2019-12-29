@@ -1,7 +1,15 @@
-export function recuperarClima() {
+//   'http://api.openweathermap.org/data/2.5/weather?lat=-2.519185&lon=-44.247190&appid=47ec3cd1bacd2d461e09c88a375e1f9d&units=metric',
+import {appid_clima} from '../utils/keys';
+
+export function recuperarClima(latitude, longitude) {
   return {
-    url:
-      'https://samples.openweathermap.org/data/2.5/weather?q=London,uk&appid=b6907d289e10d714a6e88b30761fae22',
+    url: 'http://api.openweathermap.org/data/2.5/weather',
     metodo: 'get',
+    params: {
+      lat: latitude,
+      lon: longitude,
+      appid: appid_clima,
+      units: 'metric',
+    },
   };
 }

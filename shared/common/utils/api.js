@@ -20,20 +20,24 @@ async function rotear({metodo, url, headers, data, ...otherParams}) {
     ...headers,
   };
   if (data) {
-    return await axiosInstance(url, data, {
+    const instancia = await axiosInstance(url, data, {
       ...otherParams,
       paramsSerializer: params => {
         return qs.stringify(params, {arrayFormat: 'repeat'});
       },
       headers,
     });
+    console.warn('instancia:', instancia);
+    return instancia;
   } else {
-    return await axiosInstance(url, {
+    const instancia = await axiosInstance(url, {
       ...otherParams,
       paramsSerializer: params => {
         return qs.stringify(params, {arrayFormat: 'repeat'});
       },
       headers,
     });
+    console.log('instancia:', instancia.request);
+    return instancia;
   }
 }
