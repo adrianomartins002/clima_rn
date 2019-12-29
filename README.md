@@ -35,6 +35,9 @@ Para execução e desenvolvimento do projeto é necessário, ou que tenha instal
 ## Autores
 - Adriano Martins de Oliveira Sousa.
 
+## Api para dados de clima
+ - [Open Weather](https://openweathermap.org/)
+
 ## Imagens e SVG (Autores)
     Algumas das imagens e svg's grátis que utilizei vieram do site [Flaticon](https://www.flaticon.com/)
 - Autores :
