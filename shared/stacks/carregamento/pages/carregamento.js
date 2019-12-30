@@ -5,19 +5,20 @@ import {
   StyleSheet,
   ActivityIndicator,
   StatusBar,
-  PermissionsAndroid,
 } from 'react-native';
 import Sun from '../../../common/assets/illustrations/sun-glass.svg';
 import Offline from '../../../common/assets/illustrations/offline.svg';
 import NetInfo from '@react-native-community/netinfo';
+import {SystemUtils} from '../../../common/utils/system';
 
 export class Carregamento extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
+  _redeConectada = false;
+
   state = {
-    redeConectada: true,
     semPermissaoLocalizacao: true,
   };
 
@@ -26,29 +27,26 @@ export class Carregamento extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     NetInfo.addEventListener(state => {
       this.verificarConexao(state.isConnected);
     });
   }
 
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
   verificarConexao = isConnected => {
-    this.setState({redeConectada: isConnected});
-    isConnected ? this.requisitarLocalizacao() : () => {};
+    this._redeConectada = isConnected;
+    if (this._isMounted && isConnected) {
+      this.requisitarLocalizacao();
+    }
   };
 
   requisitarLocalizacao = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Permissão de localização',
-        message:
-          'Para conseguir o clima da sua região ' +
-          'é necessário a permissão de localização',
-        buttonNegative: 'Cancelar',
-        buttonPositive: 'OK',
-      },
-    );
-    if (granted) {
+    const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
+    if (granted && this._redeConectada) {
       this.props.navigation.navigate('Inicio');
     } else {
       this.props.navigation.navigate('SemPermissao');
@@ -56,7 +54,7 @@ export class Carregamento extends React.Component {
   };
 
   render() {
-    if (!this.state.redeConectada) {
+    if (!this._redeConectada) {
       return (
         <View style={styles.container}>
           <StatusBar backgroundColor="white" barStyle="dark-content" />

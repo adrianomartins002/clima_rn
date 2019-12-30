@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  ActivityIndicator,
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
@@ -28,6 +27,10 @@ export const SemPermissao = props => {
       </View>
     </View>
   );
+};
+
+SemPermissao.navigationOptions = {
+  header: null,
 };
 
 const stylesBotao = StyleSheet.create({
