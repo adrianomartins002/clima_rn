@@ -48,4 +48,36 @@ Para execução e desenvolvimento do projeto é necessário, ou que tenha instal
     <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
-    
+
+
+
+## Arquitetura do projeto	
+
+	```
+	shared
+		-stacks
+			-carregamento
+			-principal
+		-common
+			-apis
+			-assets
+			-services
+		-components
+			-atoms
+			-molecules
+			-organisms
+	```
+
+### Stacks
+	- Parte do projeto onde conterá os fluxos para transição entre as telas
+	- Fiz uso do react-navigation para a transição, ele já possui um conceito de container, switch e stack de navegação, a parte de stack foi meio que pensada nisso
+	A stack de carregamento por exemplo, monta a page de carregamento, e permissão de localização, para caso o usuário não dê permissão realizar a transição entre elas
+	A stack principal, como o próprio nome já diz, contem a tela principal onde mostrará as informações de clima
+
+### Common
+	Coisas comuns para o projeto, entre elas: apis, assets e services
+	Nesse caso foi levado em conta que services, seria a parte do projeto responsável por parte da lógica de requisição das informações, elas são montadas na parte de apis
+	Para as requests, utilizei o axios
+
+### Comoponents
+	Essa parte foi criada pensando na idéia do atomic design para aplicações web/mobile, onde cada componente é criado e reutilizado

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-// import Sun from '../common/assets/illustrations/cloud.svg';
+// import Sun from '../../common/assets/illustrations/cloud.svg';
 
 export const Temperatura = props => {
   const Icone = props.icone;

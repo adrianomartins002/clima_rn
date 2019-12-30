@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   StatusBar,
 } from 'react-native';
-import Sun from '../common/assets/illustrations/sun-glass.svg';
+import Sun from '../../common/assets/illustrations/sun-glass.svg';
 
 export const LoadingComponent = props => {
   return (

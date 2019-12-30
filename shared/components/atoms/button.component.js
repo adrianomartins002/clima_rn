@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import Refresh from '../common/assets/illustrations/refresh-arrow.svg';
+import Refresh from '../../common/assets/illustrations/refresh-arrow.svg';
 
 export const Button = props => {
   return (

@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {Info} from '../atoms';
-import Thermometer from '../common/assets/illustrations/thermometer.svg';
-import Pressure from '../common/assets/illustrations/pressure.svg';
-import Cloud from '../common/assets/illustrations/cloud-min.svg';
-import Wind from '../common/assets/illustrations/wind.svg';
+import Thermometer from '../../common/assets/illustrations/thermometer.svg';
+import Pressure from '../../common/assets/illustrations/pressure.svg';
+import Cloud from '../../common/assets/illustrations/cloud-min.svg';
+import Wind from '../../common/assets/illustrations/wind.svg';
 
 export const Informacoes = props => {
   const dados = montarDados(props);
