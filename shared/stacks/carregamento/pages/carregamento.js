@@ -35,7 +35,6 @@ export class Carregamento extends React.Component {
         message:
           'Para conseguir o clima da sua região ' +
           'é necessário a permissão de localização',
-        buttonNeutral: 'Pergunte-me depois',
         buttonNegative: 'Cancelar',
         buttonPositive: 'OK',
       },
@@ -43,35 +42,23 @@ export class Carregamento extends React.Component {
     if (granted) {
       this.setState({semPermissaoLocalizacao: false});
       this.props.navigation.navigate('Inicio');
+    } else {
+      this.props.navigation.navigate('SemPermissao');
     }
   };
 
   render() {
-    if (this.state.semPermissaoLocalizacao) {
-      return (
-        <View style={styles.container}>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
-          <View style={styles.containerTemp} />
-          <Sun width={180} height={110} />
-          <View style={styles.containerCarregando}>
-            <Text style={styles.textCarregando}>Carregando</Text>
-            <ActivityIndicator size="large" color="#0090C7" />
-          </View>
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
+        <View style={styles.containerTemp} />
+        <Sun width={180} height={110} />
+        <View style={styles.containerCarregando}>
+          <Text style={styles.textCarregando}>Carregando</Text>
+          <ActivityIndicator size="large" color="#0090C7" />
         </View>
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
-          <View style={styles.containerTemp} />
-          <Sun width={180} height={110} />
-          <View style={styles.containerCarregando}>
-            <Text style={styles.textCarregando}>Carregando</Text>
-            <ActivityIndicator size="large" color="#0090C7" />
-          </View>
-        </View>
-      );
-    }
+      </View>
+    );
   }
 }
 

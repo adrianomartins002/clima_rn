@@ -59,7 +59,6 @@ export class Inicio extends React.Component {
         message:
           'Para conseguir o clima da sua região ' +
           'é necessário a permissão de localização',
-        buttonNeutral: 'Pergunte-me depois',
         buttonNegative: 'Cancelar',
         buttonPositive: 'OK',
       },
@@ -97,7 +96,6 @@ export class Inicio extends React.Component {
         message:
           'Para conseguir o clima da sua região ' +
           'é necessário a permissão de localização',
-        buttonNeutral: 'Pergunte-me depois',
         buttonNegative: 'Cancelar',
         buttonPositive: 'OK',
       },
