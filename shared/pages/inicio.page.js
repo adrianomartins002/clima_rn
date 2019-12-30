@@ -40,12 +40,8 @@ export class Inicio extends React.Component {
     redeConectada: true,
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
-    const unsubscribe = NetInfo.addEventListener(state => {
+    NetInfo.addEventListener(state => {
       this.setState({redeConectada: state.isConnected});
     });
     this.carregarDados();
@@ -67,33 +63,18 @@ export class Inicio extends React.Component {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       if (this.state.redeConectada) {
         Geolocation.getCurrentPosition(info => {
-          let latitude = -2.509612;
-          let longitude = -44.303996;
-          // latitude = info.coords.latitude;
-          // longitude = info.coords.longitude;
+          let latitude = 0;
+          let longitude = 0;
+          latitude = info.coords.latitude;
+          longitude = info.coords.longitude;
           this.setState({carregando: true});
 
           ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
             result => {
               if (result) {
-                this.setState({
-                  endereco: result.name,
-                  clima: result.weather[0].description,
-                  temperatura: parseInt(result.main.temp),
-                  carregando: false,
-                  sensacao: result.main.feels_like,
-                  vento: result.wind.speed,
-                  nuvens: result.clouds.all,
-                  pressao: result.main.pressure,
-                  pais: result.sys.country,
-                  color: ClimaService.tratarTemaPorCodigo(
-                    result.weather[0].icon,
-                  )[0].cor,
-                  // color: ClimaService.tratarTemaPorCodigo('02d')[0].cor,
-                  icone: ClimaService.tratarTemaPorCodigo(
-                    result.weather[0].icon,
-                  )[0].icone,
-                });
+                // console.warn(result);
+                this.setState(result);
+                this.setState({carregando: false});
               }
             },
           );
@@ -136,6 +117,7 @@ export class Inicio extends React.Component {
             backgroundColor={this.state.color}
             barStyle="light-content"
           />
+          {/* componente de verificação de conexão de rede */}
           <NetworkInfo />
           {/* endereco */}
           <View style={styles.containerEndereco}>

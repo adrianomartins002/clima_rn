@@ -5,14 +5,6 @@ import * as Animatable from 'react-native-animatable';
 
 const {width} = Dimensions.get('window');
 
-function OnlineMessage() {
-  return (
-    <View style={[styles.offlineContainer, {backgroundColor: '#00A84D'}]}>
-      <Text style={styles.offlineText}>Com Internet</Text>
-    </View>
-  );
-}
-
 function OfflineMessage() {
   return (
     <View style={styles.offlineContainer}>
@@ -20,6 +12,11 @@ function OfflineMessage() {
     </View>
   );
 }
+
+/**
+ * Componente criado para informar se a conexão de rede caiu
+ * ou wi-fi ou móvel
+ */
 export class NetworkInfo extends React.PureComponent {
   state = {
     isConnected: true,

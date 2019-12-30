@@ -1,6 +1,11 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
+/**
+ * Componente funcional com informações da localização atual via gps do usuario
+ * @param {*} props
+ */
+
 export const Endereco = props => {
   let localizacao = props.localizacao;
 
