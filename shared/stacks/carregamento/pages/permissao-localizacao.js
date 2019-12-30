@@ -7,7 +7,7 @@ import {
   StatusBar,
   TouchableOpacity,
 } from 'react-native';
-import Sun from '../common/assets/illustrations/sun-glass.svg';
+import Sun from '../../../common/assets/illustrations/sun-glass.svg';
 
 export const SemPermissao = props => {
   return (

@@ -12,18 +12,22 @@ import {View, StatusBar, PermissionsAndroid, StyleSheet} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import Geolocation from '@react-native-community/geolocation';
 
-import {Informacoes} from '../organisms';
+import {Informacoes} from '../../../components/organisms';
 import {
   Temperatura,
   Endereco,
   LoadingComponent,
   SemPermissao,
   NetworkInfo,
-} from '../../shared/molecules';
-import {Button} from '../../shared/atoms';
-import {ClimaService} from '../../shared/common/services/clima.service';
+} from '../../../components/molecules';
+import {Button} from '../../../components/atoms';
+import {ClimaService} from '../../../common/services/clima.service';
 
 export class Inicio extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
+
   state = {
     endereco: null,
     temperatura: 0,
@@ -55,7 +59,6 @@ export class Inicio extends React.Component {
         message:
           'Para conseguir o clima da sua região ' +
           'é necessário a permissão de localização',
-        buttonNeutral: 'Pergunte-me depois',
         buttonNegative: 'Cancelar',
         buttonPositive: 'OK',
       },
@@ -93,7 +96,6 @@ export class Inicio extends React.Component {
         message:
           'Para conseguir o clima da sua região ' +
           'é necessário a permissão de localização',
-        buttonNeutral: 'Pergunte-me depois',
         buttonNegative: 'Cancelar',
         buttonPositive: 'OK',
       },
