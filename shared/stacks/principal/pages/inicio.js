@@ -17,7 +17,6 @@ import {
   Temperatura,
   Endereco,
   LoadingComponent,
-  SemPermissao,
   NetworkInfo,
 } from '../../../components/molecules';
 import {Button} from '../../../components/atoms';
@@ -40,7 +39,6 @@ export class Inicio extends React.Component {
     pais: null,
     color: null,
     icone: null,
-    semPermissaoLocalizacao: false,
     redeConectada: true,
   };
 
@@ -52,65 +50,27 @@ export class Inicio extends React.Component {
   }
 
   carregarDados = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Permissão de localização',
-        message:
-          'Para conseguir o clima da sua região ' +
-          'é necessário a permissão de localização',
-        buttonNegative: 'Cancelar',
-        buttonPositive: 'OK',
-      },
-    );
-    if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      if (this.state.redeConectada) {
-        Geolocation.getCurrentPosition(info => {
-          let latitude = 0;
-          let longitude = 0;
-          latitude = info.coords.latitude;
-          longitude = info.coords.longitude;
-          this.setState({carregando: true});
+    if (this.state.redeConectada) {
+      Geolocation.getCurrentPosition(info => {
+        let latitude = 0;
+        let longitude = 0;
+        latitude = info.coords.latitude;
+        longitude = info.coords.longitude;
+        this.setState({carregando: true});
 
-          ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
-            result => {
-              if (result) {
-                // console.warn(result);
-                this.setState(result);
-                this.setState({carregando: false});
-              }
-            },
-          );
-        });
-      }
-    } else {
-      this.setState({semPermissaoLocalizacao: true});
-    }
-  };
-
-  hadlePressPermitirLocalizacao = async () => {
-    const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-      {
-        title: 'Permissão de localização',
-        message:
-          'Para conseguir o clima da sua região ' +
-          'é necessário a permissão de localização',
-        buttonNegative: 'Cancelar',
-        buttonPositive: 'OK',
-      },
-    );
-    if (granted) {
-      this.setState({semPermissaoLocalizacao: false});
-      this.carregarDados();
+        ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
+          result => {
+            if (result) {
+              this.setState(result);
+              this.setState({carregando: false});
+            }
+          },
+        );
+      });
     }
   };
 
   render() {
-    if (this.state.semPermissaoLocalizacao) {
-      return <SemPermissao onPress={this.hadlePressPermitirLocalizacao} />;
-    }
-
     if (!this.state.carregando) {
       return (
         //centralizar componentes para melhor visualização
