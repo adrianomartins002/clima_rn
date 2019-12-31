@@ -6,7 +6,13 @@ export const ClimaService = {
   /**
    * @method metodo responsável por retornar objeto com as informações que serão utilizadas na página
    * @param {*} result parametro com o resultado vindo da api de localizacao
-   *
+   * @returns retorna um objeto com as informacoes do clima
+   * nuvens é a nebulosidade
+   * pressão é a pressão atmosférica ao nível do mar
+   * pais é o pais
+   * vento é a velocidade em metros por segundo (isso vem por default mas pode ser mudado)
+   * sensacao é a sensação termica
+   * endereco é o nome do local dado pelo gps
    */
 
   async recuperarClimaPelaLocalizacao(latitude, longitude) {

@@ -39,17 +39,17 @@ function montarDados(dados) {
     },
     {
       titulo: 'Vento',
-      descricao: dados.vento,
+      descricao: dados.vento + 'm/s',
       icone: () => <Wind width={25} height={25} fill={'#FFF'} />,
     },
     {
-      titulo: 'Nuvens',
-      descricao: dados.nuvens,
+      titulo: 'Nebulosidade',
+      descricao: dados.nuvens + '%',
       icone: () => <Cloud width={25} height={25} fill={'#FFF'} />,
     },
     {
       titulo: 'Pressão atmosférica',
-      descricao: dados.pressao + ' mb',
+      descricao: dados.pressao + ' hPa',
       icone: () => <Pressure width={25} height={25} fill={'#FFF'} />,
     },
   ];
