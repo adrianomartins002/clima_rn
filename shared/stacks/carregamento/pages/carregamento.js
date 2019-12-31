@@ -43,6 +43,7 @@ export class Carregamento extends React.PureComponent {
     if (granted !== 'denied' && this._redeConectada) {
       this.props.navigation.navigate('Inicio');
     } else {
+      this.setState({semPermissaoLocalizacao: true});
       this.props.navigation.navigate('SemPermissao', {
         onPress: this.requisitarLocalizacao,
       });
@@ -51,18 +52,33 @@ export class Carregamento extends React.PureComponent {
 
   render() {
     if (!this._redeConectada) {
-      return (
-        <View style={styles.container}>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
-          <View style={styles.containerTemp} />
-          <Offline width={180} height={110} />
-          <View style={styles.containerCarregando}>
-            <Text style={styles.textCarregando}>
-              Aparentemente você está sem internet!
-            </Text>
+      if (this.state.semPermissaoLocalizacao) {
+        return (
+          <View style={styles.container}>
+            <StatusBar backgroundColor="white" barStyle="dark-content" />
+            <View style={styles.containerTemp} />
+            <Offline width={180} height={110} />
+            <View style={styles.containerCarregando}>
+              <Text style={styles.textCarregando}>
+                Precisamos da sua localizacao :/
+              </Text>
+            </View>
           </View>
-        </View>
-      );
+        );
+      } else {
+        return (
+          <View style={styles.container}>
+            <StatusBar backgroundColor="white" barStyle="dark-content" />
+            <View style={styles.containerTemp} />
+            <Offline width={180} height={110} />
+            <View style={styles.containerCarregando}>
+              <Text style={styles.textCarregando}>
+                Aparentemente você está sem internet!
+              </Text>
+            </View>
+          </View>
+        );
+      }
     } else {
       return (
         <View style={styles.container}>
