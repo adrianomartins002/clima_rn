@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Refresh from '../../common/assets/illustrations/refresh-arrow.svg';
 import PropTypes from 'prop-types';
 
-export const Button = props => {
+export const Button = React.memo(props => {
   return (
     <View style={[styles.container, {backgroundColor: props.backgroundColor}]}>
       <TouchableOpacity onPress={props.onPress} style={styles.touchable}>
@@ -11,7 +11,7 @@ export const Button = props => {
       </TouchableOpacity>
     </View>
   );
-};
+});
 
 Button.propTypes = {
   backgroundColor: PropTypes.string,

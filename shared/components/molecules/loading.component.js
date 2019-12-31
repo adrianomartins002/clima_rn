@@ -3,7 +3,7 @@ import {View, StyleSheet, StatusBar} from 'react-native';
 import AnimatedLoader from 'react-native-animated-loader';
 import PropTypes from 'prop-types';
 
-export const LoadingComponent = props => {
+export const LoadingComponent = React.memo(props => {
   return (
     <View style={styles.container}>
       <StatusBar
@@ -30,7 +30,7 @@ export const LoadingComponent = props => {
       />
     </View>
   );
-};
+});
 
 LoadingComponent.propTypes = {
   backgroundColor: PropTypes.string,

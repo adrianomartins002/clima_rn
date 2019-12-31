@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import PropTyes from 'prop-types';
 
-export const Temperatura = props => {
+export const Temperatura = React.memo(props => {
   const Icone = props.icone;
   return (
     <View style={styles.container}>
@@ -14,7 +14,7 @@ export const Temperatura = props => {
       <Text style={styles.textClima}>{props.clima}</Text>
     </View>
   );
-};
+});
 
 Temperatura.propTypes = {
   icone: PropTyes.func,
