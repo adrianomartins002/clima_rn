@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-// import Sun from '../../common/assets/illustrations/cloud.svg';
 
 export const Temperatura = props => {
   const Icone = props.icone;
   return (
     <View style={styles.container}>
       <View style={styles.containerTemp}>
-        <Text style={styles.textTemperatura}>{props.temperatura}º</Text>
+        <Text style={styles.textTemperatura}>{props.temperatura}</Text>
+        <Text style={[styles.textTemperatura, {fontSize: 60}]}>º</Text>
         <Icone width={120} height={80} />
       </View>
       <Text style={styles.textClima}>{props.clima}</Text>

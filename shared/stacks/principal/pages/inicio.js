@@ -117,7 +117,7 @@ export class Inicio extends React.Component {
         </View>
       );
     } else {
-      return <LoadingComponent />;
+      return <LoadingComponent backgroundColor={this.state.color} />;
     }
   }
 }

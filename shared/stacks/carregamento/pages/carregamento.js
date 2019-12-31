@@ -1,17 +1,11 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ActivityIndicator,
-  StatusBar,
-} from 'react-native';
-import Sun from '../../../common/assets/illustrations/sun-glass.svg';
+import {View, Text, StyleSheet, StatusBar} from 'react-native';
 import Offline from '../../../common/assets/illustrations/offline.svg';
 import NetInfo from '@react-native-community/netinfo';
 import {SystemUtils} from '../../../common/utils/system';
+import AnimatedLoader from 'react-native-animated-loader';
 
-export class Carregamento extends React.Component {
+export class Carregamento extends React.PureComponent {
   static navigationOptions = {
     header: null,
   };
@@ -72,11 +66,20 @@ export class Carregamento extends React.Component {
         <View style={styles.container}>
           <StatusBar backgroundColor="white" barStyle="dark-content" />
           <View style={styles.containerTemp} />
-          <Sun width={180} height={110} />
-          <View style={styles.containerCarregando}>
-            <Text style={styles.textCarregando}>Carregando</Text>
-            <ActivityIndicator size="large" color="#0090C7" />
-          </View>
+          <View style={styles.containerCarregando} />
+          <AnimatedLoader
+            visible={true}
+            overlayColor="rgba(255,255,255,0.75)"
+            source={require('../../../common/assets/animations/loader-sun2.json')}
+            animationStyle={{
+              width: '100%',
+              height: '100%',
+              marginLeft: 10,
+              opacity: 1,
+              backgroundColor: '#5267FF',
+            }}
+            speed={1}
+          />
         </View>
       );
     }
