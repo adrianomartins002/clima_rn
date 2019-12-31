@@ -9,6 +9,7 @@ import {
 import Sun from '../../../common/assets/illustrations/sun-glass.svg';
 
 export const SemPermissao = props => {
+  const onPress = props.navigation.getParam('onPress');
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -20,7 +21,7 @@ export const SemPermissao = props => {
           recursos do clima
         </Text>
         <View style={[stylesBotao.containerBotao]}>
-          <TouchableOpacity onPress={props.onPress} style={styles.touchable}>
+          <TouchableOpacity onPress={onPress} style={styles.touchable}>
             <Text style={stylesBotao.textBotao}>Permitir</Text>
           </TouchableOpacity>
         </View>
