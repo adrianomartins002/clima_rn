@@ -5,9 +5,8 @@ import * as pages from './pages';
 /**
  * Cada stack fica responsável por meio que "uma etapa" do
  * aplicativo.
- * Na stack Inicio são englobadas as pages necessárias para o
- * início da aplicação
  */
-export const Inicio = createStackNavigator({
+
+export const Permissoes = createStackNavigator({
   ...pages,
 });

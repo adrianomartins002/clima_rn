@@ -7,14 +7,28 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Sun from '../../../common/assets/illustrations/sun-glass.svg';
+import {SystemUtils} from '../../../common/utils/system';
 
-export const SemPermissao = props => {
-  const onPress = props.navigation.getParam('onPress');
+/**
+ *
+ * @param {*} props as propriedades vem apartir do navigation
+ * a utilizada até então é o onPress, chamando como callback da página que utiliza a requisição
+ * Utilizei para fazer chamada apartir da page anterior, para que tenha a possibilidade de navegação
+ * para outra tela
+ */
+
+export const PermissaoLocalizacao = props => {
+  const onPress = async () => {
+    const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
+    if (granted !== 'denied') {
+      props.navigation.navigate('Inicio');
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <View style={styles.containerTemp} />
-      <Sun width={180} height={110} />
+      <StatusBar backgroundColor="#FF8C00" barStyle="dark-content" />
+      <Sun width={200} height={120} />
       <View style={styles.containerCarregando}>
         <Text style={styles.textCarregando}>
           É necessário dar permissão para localização pelo gps para utilizar os
@@ -30,7 +44,11 @@ export const SemPermissao = props => {
   );
 };
 
-SemPermissao.navigationOptions = {
+/**
+ * Remover o cabeçalho padrão
+ */
+
+PermissaoLocalizacao.navigationOptions = {
   header: null,
 };
 
@@ -39,7 +57,7 @@ const stylesBotao = StyleSheet.create({
     width: 150,
     height: 50,
     alignSelf: 'center',
-    backgroundColor: '#BB8700',
+    backgroundColor: '#FFF',
     marginTop: 15,
     borderRadius: 25,
   },
@@ -52,33 +70,23 @@ const stylesBotao = StyleSheet.create({
   textBotao: {
     fontSize: 18,
     marginTop: 10,
-    color: '#FFF',
+    color: '#FF8C00',
     alignSelf: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
   },
 });
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.75,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  containerTemp: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  containerCarregando: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    backgroundColor: '#FF8C00',
   },
   textCarregando: {
-    fontSize: 20,
-    fontWeight: '800',
+    fontSize: 22,
+    fontWeight: 'bold',
     justifyContent: 'center',
     textAlign: 'center',
+    color: '#FFF',
   },
 });

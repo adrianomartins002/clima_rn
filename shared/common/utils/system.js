@@ -6,4 +6,10 @@ export const SystemUtils = {
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
   },
+
+  async checarPermissaoDeLocalizacao() {
+    return await PermissionsAndroid.check(
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+    );
+  },
 };

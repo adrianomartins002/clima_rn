@@ -1,5 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
+import PropTypes from 'prop-types';
+
 import {Info} from '../atoms';
 import Thermometer from '../../common/assets/illustrations/thermometer.svg';
 import Pressure from '../../common/assets/illustrations/pressure.svg';
@@ -21,7 +23,14 @@ export const Informacoes = props => {
   );
 };
 
-function montarDados({dados}) {
+Informacoes.propTypes = {
+  sensacao: PropTypes.number,
+  vento: PropTypes.number,
+  nuvens: PropTypes.number,
+  pressao: PropTypes.number,
+};
+
+function montarDados(dados) {
   return [
     {
       titulo: 'Sensação',

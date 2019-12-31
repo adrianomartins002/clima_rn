@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import PropTyes from 'prop-types';
 
 export const Temperatura = props => {
   const Icone = props.icone;
@@ -13,6 +14,12 @@ export const Temperatura = props => {
       <Text style={styles.textClima}>{props.clima}</Text>
     </View>
   );
+};
+
+Temperatura.propTypes = {
+  icone: PropTyes.func,
+  temperatura: PropTyes.number,
+  clima: PropTyes.string,
 };
 
 const styles = StyleSheet.create({

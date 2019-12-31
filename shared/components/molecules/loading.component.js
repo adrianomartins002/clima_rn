@@ -1,11 +1,17 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, StatusBar} from 'react-native';
 import AnimatedLoader from 'react-native-animated-loader';
+import PropTypes from 'prop-types';
 
 export const LoadingComponent = props => {
   return (
     <View style={styles.container}>
-      {/* <StatusBar backgroundColor="white" barStyle="dark-content" /> */}
+      <StatusBar
+        backgroundColor={
+          props.backgroundColor ? props.backgroundColor : '#E0AF3E'
+        }
+        barStyle="dark-content"
+      />
       <View style={styles.containerTemp} />
       <View style={styles.containerCarregando} />
       <AnimatedLoader
@@ -15,13 +21,19 @@ export const LoadingComponent = props => {
         animationStyle={[
           styles.containerAnimation,
           {
-            backgroundColor: props.backgroundColor,
+            backgroundColor: props.backgroundColor
+              ? props.backgroundColor
+              : '#E0AF3E',
           },
         ]}
         speed={1}
       />
     </View>
   );
+};
+
+LoadingComponent.propTypes = {
+  backgroundColor: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
@@ -35,7 +47,6 @@ const styles = StyleSheet.create({
     height: '100%',
     marginLeft: 10,
     opacity: 1,
-    backgroundColor: '#FFF',
   },
   containerTemp: {
     flex: 1,
