@@ -8,7 +8,7 @@ import Pressure from '../../common/assets/illustrations/pressure.svg';
 import Cloud from '../../common/assets/illustrations/cloud-min.svg';
 import Wind from '../../common/assets/illustrations/wind.svg';
 
-export const Informacoes = props => {
+export const Informacoes = React.memo(props => {
   const dados = montarDados(props);
   return (
     <View style={styles.containerLista}>
@@ -21,7 +21,7 @@ export const Informacoes = props => {
       />
     </View>
   );
-};
+});
 
 Informacoes.propTypes = {
   sensacao: PropTypes.number,

@@ -17,7 +17,7 @@ import {SystemUtils} from '../../../common/utils/system';
  * para outra tela
  */
 
-export const PermissaoLocalizacao = props => {
+export const PermissaoLocalizacao = React.memo(props => {
   const onPress = async () => {
     const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
     if (granted !== 'denied') {
@@ -42,7 +42,7 @@ export const PermissaoLocalizacao = props => {
       </View>
     </View>
   );
-};
+});
 
 /**
  * Remover o cabeçalho padrão

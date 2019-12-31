@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  * @param {*} props
  */
 
-export const Endereco = props => {
+export const Endereco = React.memo(props => {
   let localizacao = props.localizacao;
 
   //validacao utilizada para não haver quebra do layout por conta do tamanho
@@ -22,7 +22,7 @@ export const Endereco = props => {
       <Text style={styles.textPais}>{props.pais}</Text>
     </View>
   );
-};
+});
 
 Endereco.propTypes = {
   localizacao: PropTypes.string,

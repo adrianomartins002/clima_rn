@@ -5,6 +5,11 @@ import NetInfo from '@react-native-community/netinfo';
 import {SystemUtils} from '../../../common/utils/system';
 import AnimatedLoader from 'react-native-animated-loader';
 
+/**
+ * Componente de carregamento, no qual será feita a validação e seleção do próximo
+ * fluxo
+ *
+ */
 export class Carregamento extends React.PureComponent {
   static navigationOptions = {
     header: null,
