@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Refresh from '../../common/assets/illustrations/refresh-arrow.svg';
+import PropTypes from 'prop-types';
 
 export const Button = props => {
   return (
@@ -12,9 +13,12 @@ export const Button = props => {
   );
 };
 
+Button.propTypes = {
+  backgroundColor: PropTypes.string,
+};
+
 const styles = StyleSheet.create({
   container: {
-    // width: '95%',
     height: 50,
     alignSelf: 'center',
     backgroundColor: '#BB8700',

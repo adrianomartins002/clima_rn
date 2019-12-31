@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
 
 /**
  * Componente funcional com informações da localização atual via gps do usuario
@@ -18,9 +19,14 @@ export const Endereco = props => {
       {/* cidade */}
       <Text style={styles.textLocalizacao}>{localizacao}</Text>
       {/* estado */}
-      <Text style={styles.textPais}>{props.estado}</Text>
+      <Text style={styles.textPais}>{props.pais}</Text>
     </View>
   );
+};
+
+Endereco.propTypes = {
+  localizacao: PropTypes.string,
+  pais: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

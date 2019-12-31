@@ -7,13 +7,19 @@
  */
 
 import React from 'react';
-import {View} from 'react-native';
 import {Carregamento} from './shared/stacks/carregamento';
+import {Permissoes} from './shared/stacks/permissoes';
 import {Inicio} from './shared/stacks/principal';
 import {createSwitchNavigator, createAppContainer} from 'react-navigation';
 
+/**
+ * O App navigator possui as stacks de cada fluxo englobadas pelo switchnavigator
+ * para que uma stack não interfira na outra e ainda assim possam ser acessadas
+ * pelo navigator
+ */
 const AppNavigator = createSwitchNavigator({
   Carregamento: {screen: Carregamento, path: 'carregamento'},
+  Permissoes: {screen: Permissoes, path: 'permissoes'},
   Inicio: {screen: Inicio, path: 'inicio'},
 });
 

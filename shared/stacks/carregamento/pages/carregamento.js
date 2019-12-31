@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet, StatusBar} from 'react-native';
-import Offline from '../../../common/assets/illustrations/offline.svg';
+import CloudConnection from '../../../common/assets/illustrations/cloud-connection.svg';
 import NetInfo from '@react-native-community/netinfo';
 import {SystemUtils} from '../../../common/utils/system';
 import AnimatedLoader from 'react-native-animated-loader';
@@ -10,10 +10,11 @@ export class Carregamento extends React.PureComponent {
     header: null,
   };
 
-  _redeConectada = false;
+  _redeConectada = true;
 
   state = {
     semPermissaoLocalizacao: true,
+    backgroundColor: '#E0AF3E',
   };
 
   constructor(props) {
@@ -25,7 +26,17 @@ export class Carregamento extends React.PureComponent {
     NetInfo.addEventListener(state => {
       this.verificarConexao(state.isConnected);
     });
+    this.props.navigation.addListener('willFocus', () => this.didAppear());
   }
+
+  didAppear = async () => {
+    if (this._redeConectada) {
+      this.setState({backgroundColor: '#E0AF3E'});
+      this.requisitarLocalizacao();
+    } else {
+      this.setState({backgroundColor: '#C61141'});
+    }
+  };
 
   componentWillUnmount() {
     this._isMounted = false;
@@ -33,18 +44,21 @@ export class Carregamento extends React.PureComponent {
 
   verificarConexao = isConnected => {
     this._redeConectada = isConnected;
-    if (this._isMounted && isConnected) {
+    if (isConnected === true && this.state.semPermissaoLocalizacao) {
       this.requisitarLocalizacao();
     }
   };
 
   requisitarLocalizacao = async () => {
     const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
+    if (granted === 'denied') {
+      this.props.navigation.navigate('PermissaoLocalizacao');
+    }
     if (granted !== 'denied' && this._redeConectada) {
       this.props.navigation.navigate('Inicio');
     } else {
       this.setState({semPermissaoLocalizacao: true});
-      this.props.navigation.navigate('SemPermissao', {
+      this.props.navigation.navigate('PermissaoLocalizacao', {
         onPress: this.requisitarLocalizacao,
       });
     }
@@ -52,55 +66,39 @@ export class Carregamento extends React.PureComponent {
 
   render() {
     if (!this._redeConectada) {
-      if (this.state.semPermissaoLocalizacao) {
-        return (
-          <View style={styles.container}>
-            <StatusBar backgroundColor="white" barStyle="dark-content" />
-            <View style={styles.containerTemp} />
-            <Offline width={180} height={110} />
-            <View style={styles.containerCarregando}>
-              <Text style={styles.textCarregando}>
-                Precisamos da sua localizacao :/
-              </Text>
-            </View>
-          </View>
-        );
-      } else {
-        return (
-          <View style={styles.container}>
-            <StatusBar backgroundColor="white" barStyle="dark-content" />
-            <View style={styles.containerTemp} />
-            <Offline width={180} height={110} />
-            <View style={styles.containerCarregando}>
-              <Text style={styles.textCarregando}>
-                Aparentemente você está sem internet!
-              </Text>
-            </View>
-          </View>
-        );
-      }
-    } else {
       return (
         <View style={styles.container}>
-          <StatusBar backgroundColor="white" barStyle="dark-content" />
-          <View style={styles.containerTemp} />
-          <View style={styles.containerCarregando} />
-          <AnimatedLoader
-            visible={true}
-            overlayColor="rgba(255,255,255,0.75)"
-            source={require('../../../common/assets/animations/loader-sun2.json')}
-            animationStyle={{
-              width: '100%',
-              height: '100%',
-              marginLeft: 10,
-              opacity: 1,
-              backgroundColor: '#5267FF',
-            }}
-            speed={1}
+          <StatusBar
+            backgroundColor={this.state.backgroundColor}
+            barStyle="dark-content"
           />
+          <View style={styles.containerTemp} />
+          <CloudConnection width={180} height={110} fill="#FFF" />
+          <View style={styles.containerCarregando}>
+            <Text style={styles.textCarregando}>
+              Aparentemente você está sem internet!
+            </Text>
+          </View>
         </View>
       );
     }
+    return (
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor={this.state.backgroundColor}
+          barStyle="dark-content"
+        />
+        <View style={styles.containerTemp} />
+        <View style={styles.containerCarregando} />
+        <AnimatedLoader
+          visible={true}
+          overlayColor="rgba(255,255,255,0.75)"
+          source={require('../../../common/assets/animations/loader-sun2.json')}
+          animationStyle={styles.animatedLoader}
+          speed={1}
+        />
+      </View>
+    );
   }
 }
 
@@ -109,6 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#C61141',
   },
   containerTemp: {
     flex: 1,
@@ -122,7 +121,16 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
   },
   textCarregando: {
-    fontSize: 20,
+    fontSize: 25,
+    textAlign: 'center',
     fontWeight: '800',
+    color: '#FFF',
+  },
+  animatedLoader: {
+    width: '100%',
+    height: '100%',
+    marginLeft: 10,
+    opacity: 1,
+    backgroundColor: '#E0AF3E',
   },
 });

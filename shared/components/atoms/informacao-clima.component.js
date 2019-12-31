@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import PropTypes from 'prop-types';
 
 export const Info = ({item}) => {
   return (
@@ -11,6 +12,11 @@ export const Info = ({item}) => {
       <View style={[styles.containerIcone]}>{item.icone()}</View>
     </View>
   );
+};
+
+Info.propTypes = {
+  titulo: PropTypes.string,
+  descricao: PropTypes.string,
 };
 
 const styles = StyleSheet.create({

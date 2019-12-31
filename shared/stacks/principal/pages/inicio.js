@@ -85,7 +85,7 @@ export class Inicio extends React.Component {
           <View style={styles.containerEndereco}>
             <Endereco
               localizacao={this.state.endereco}
-              estado={this.state.pais}
+              pais={this.state.pais}
             />
           </View>
           {/* temperatura */}
@@ -100,12 +100,10 @@ export class Inicio extends React.Component {
           {/* informacoes */}
           <View style={styles.containerInformacoes}>
             <Informacoes
-              dados={{
-                sensacao: this.state.sensacao,
-                vento: this.state.vento,
-                nuvens: this.state.nuvens,
-                pressao: this.state.pressao,
-              }}
+              sensacao={this.state.sensacao}
+              vento={this.state.vento}
+              nuvens={this.state.nuvens}
+              pressao={this.state.pressao}
             />
           </View>
           <View style={styles.containerAtualizar}>
