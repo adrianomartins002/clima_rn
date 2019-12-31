@@ -53,14 +53,8 @@ export class Carregamento extends React.PureComponent {
     const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
     if (granted === 'denied') {
       this.props.navigation.navigate('PermissaoLocalizacao');
-    }
-    if (granted !== 'denied' && this._redeConectada) {
-      this.props.navigation.navigate('Inicio');
     } else {
-      this.setState({semPermissaoLocalizacao: true});
-      this.props.navigation.navigate('PermissaoLocalizacao', {
-        onPress: this.requisitarLocalizacao,
-      });
+      this.props.navigation.navigate('Inicio');
     }
   };
 

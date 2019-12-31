@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Sun from '../../../common/assets/illustrations/sun-glass.svg';
+import {SystemUtils} from '../../../common/utils/system';
 
 /**
  *
@@ -17,7 +18,13 @@ import Sun from '../../../common/assets/illustrations/sun-glass.svg';
  */
 
 export const PermissaoLocalizacao = props => {
-  const onPress = props.navigation.getParam('onPress');
+  const onPress = async () => {
+    const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
+    if (granted !== 'denied') {
+      props.navigation.navigate('Inicio');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar backgroundColor="#FF8C00" barStyle="dark-content" />
