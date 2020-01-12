@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, StatusBar, Platform} from 'react-native';
 import CloudConnection from '../../../common/assets/illustrations/cloud-connection.svg';
 import NetInfo from '@react-native-community/netinfo';
 import {SystemUtils} from '../../../common/utils/system';
@@ -55,12 +55,17 @@ export class Carregamento extends React.PureComponent {
   };
 
   requisitarLocalizacao = async () => {
+    if(Platform.OS === "android"){
     const granted = await SystemUtils.requisitarPermissaoDeLocalizacao();
     if (granted === 'denied') {
       this.props.navigation.navigate('PermissaoLocalizacao');
     } else {
       this.props.navigation.navigate('Inicio');
     }
+
+  }else{
+    this.props.navigation.navigate('Inicio');
+  }
   };
 
   render() {

@@ -43,6 +43,7 @@ export class Inicio extends React.Component {
   };
 
   componentDidMount() {
+    
     NetInfo.addEventListener(state => {
       this.setState({redeConectada: state.isConnected});
     });
@@ -51,11 +52,13 @@ export class Inicio extends React.Component {
 
   carregarDados = async () => {
     if (this.state.redeConectada) {
+      console.warn("rede conectada:", this.state.redeConectada)
       Geolocation.getCurrentPosition(info => {
         let latitude = 0;
         let longitude = 0;
         latitude = info.coords.latitude;
         longitude = info.coords.longitude;
+        console.warn("latitude:", latitude)
         this.setState({carregando: true});
 
         ClimaService.recuperarClimaPelaLocalizacao(latitude, longitude).then(
