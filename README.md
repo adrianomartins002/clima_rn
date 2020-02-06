@@ -1,7 +1,7 @@
 # clima_rn
 Projeto para criação de aplicativo para verificar o clima da região pelo gps
 
-[Tela1](https://imgur.com/NoRZk3K)
+![Tela1](https://i.imgur.com/NoRZk3K.jpg)
 
 # Iniciando
 Essas instruções fornecerão uma cópia do projeto em execução na sua máquina local para fins de desenvolvimento e teste. Consulte implantação para obter notas sobre como implantar o projeto em 
